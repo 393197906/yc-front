@@ -53,7 +53,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <!-- SEO -->
-    <title>亿城</title>
+    <title>亿成</title>
     <meta name="keywords" content="your keywords">
     <meta name="description" content="your description">
     <meta name="author" content="author,email address">

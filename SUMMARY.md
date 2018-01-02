@@ -1,4 +1,4 @@
-# 亿城前端开发规范
+# 亿成前端开发规范
 * [引子](README.md)
 * [基本原则](basic/README.md)
 * [HTML](html/README.md)
