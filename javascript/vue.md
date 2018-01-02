@@ -44,39 +44,34 @@
 
 这样做可以避免跟现有的以及未来的 HTML 元素[相冲突](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name)，因为所有的 HTML 元素名称都是单个单词的。
 
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
-``` js
+```javascript
 Vue.component('todo', {
   // ...
 })
 ```
 
-``` js
+```javascript
 export default {
   name: 'Todo',
   // ...
 }
 ```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
-``` js
+``` javascript
 Vue.component('todo-item', {
   // ...
 })
 ```
 
-``` js
+``` javascript
 export default {
   name: 'TodoItem',
   // ...
 }
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -86,13 +81,7 @@ export default {
 
 当在组件中使用 `data` 属性的时候 (除了 `new Vue` 外的任何地方)，它的值必须是返回一个对象的函数。
 
-{% raw %}
-<details>
-<summary>
-  <h4>详解</h4>
-</summary>
-{% endraw %}
-
+####详解
 当 `data` 的值是一个对象时，它会在这个组件的所有实例之间共享。想象一下，假如一个 `TodoList` 组件的数据是这样的：
 
 ``` js
@@ -114,9 +103,6 @@ data: function () {
   }
 }
 ```
-{% raw %}</details>{% endraw %}
-
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` js
@@ -134,9 +120,6 @@ export default {
   }
 }
 ```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 ``` js
 Vue.component('some-comp', {
@@ -168,7 +151,6 @@ new Vue({
   }
 })
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -178,30 +160,20 @@ new Vue({
 
 在你提交的代码中，prop 的定义应该尽量详细，至少需要指定其类型。
 
-{% raw %}
-<details>
-<summary>
-  <h4>详解</h4>
-</summary>
-{% endraw %}
+####详解
 
 细致的 [prop 定义](../guide/components.html#Prop-验证)有两个好处：
 
 - 它们写明了组件的 API，所以很容易看懂组件的用法；
 - 在开发环境下，如果向一个组件提供格式不正确的 prop，Vue 将会告警，以帮助你捕获潜在的错误来源。
 
-{% raw %}</details>{% endraw %}
 
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` js
 // 这样做只有开发原型系统时可以接受
 props: ['status']
 ```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ``` js
@@ -227,7 +199,6 @@ props: {
   }
 }
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -237,12 +208,7 @@ props: {
 
 在组件上_总是_必须用 `key` 配合 `v-for`，以便维护内部组件及其子树的状态。甚至在元素上维护可预测的行为，比如动画中的[对象固化 (object constancy)](https://bost.ocks.org/mike/constancy/)，也是一种好的做法。
 
-{% raw %}
-<details>
-<summary>
-  <h4>详解</h4>
-</summary>
-{% endraw %}
+####详解
 
 假设你有一个待办事项列表：
 
@@ -269,9 +235,6 @@ data: function () {
 
 根据我们的经验，最好_始终_添加一个唯一的键值，以便你和你的团队永远不必担心这些极端情况。也在少数对性能有严格要求的情况下，为了避免对象固化，你可以刻意做一些非常规的处理。
 
-{% raw %}</details>{% endraw %}
-
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` html
@@ -281,9 +244,6 @@ data: function () {
   </li>
 </ul>
 ```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ``` html
@@ -296,7 +256,6 @@ data: function () {
   </li>
 </ul>
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -310,12 +269,7 @@ data: function () {
 
 - 为了避免渲染本应该被隐藏的列表 (比如 `v-for="user in users" v-if="shouldShowUsers"`)。这种情形下，清将 `v-if` 移动至容器元素上 (比如 `ul`, `ol`)。
 
-{% raw %}
-<details>
-<summary>
-  <h4>详解</h4>
-</summary>
-{% endraw %}
+####详解
 
 当 Vue 处理指令时，`v-for` 比 `v-if` 具有更高的优先级，所以这个模板：
 
@@ -401,9 +355,6 @@ computed: {
 
 通过将 `v-if` 移动到容器元素，我们不会再对列表中的_每个_用户检查 `shouldShowUsers`。取而代之的是，我们只检查它一次，且不会在 `shouldShowUsers` 为否的时候运算 `v-for`。
 
-{% raw %}</details>{% endraw %}
-
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` html
@@ -429,9 +380,6 @@ computed: {
   <li>
 </ul>
 ```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ``` html
@@ -455,7 +403,6 @@ computed: {
   <li>
 </ul>
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -470,20 +417,12 @@ computed: {
 
 这让覆写内部样式更容易：使用了常人可理解的 class 名称且没有太高的选择器优先级，而且不太会导致冲突。
 
-{% raw %}
-<details>
-<summary>
-  <h4>详解</h4>
-</summary>
-{% endraw %}
+####详解
 
 如果你和其他开发者一起开发一个大型工程，或有时引入三方 HTML/CSS (比如来自 Auth0)，设置一致的作用域会确保你的样式只会运用在它们想要作用的组件上。
 
 不止要使用 `scoped` 特性，使用唯一的 class 名可以帮你确保那些三方库的 CSS 不会运用在你自己的 HTML 上。比如许多工程都使用了 `button`、`btn` 或 `icon` class 名，所以即便你不使用类似 BEM 的策略，添加一个 app 专属或组件专属的前缀 (比如 `ButtonClose-icon`) 也可以提供很多保护。
 
-{% raw %}</details>{% endraw %}
-
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` html
@@ -497,9 +436,6 @@ computed: {
 }
 </style>
 ```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ``` html
@@ -555,7 +491,6 @@ computed: {
 }
 </style>
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -563,12 +498,7 @@ computed: {
 
 **在插件、混入等扩展中始终为自定义的私有属性使用 `$_` 前缀。并附带一个命名空间以回避和其它作者的冲突 (比如 `$_yourPluginName_`)。**
 
-{% raw %}
-<details>
-<summary>
-  <h4>详解</h4>
-</summary>
-{% endraw %}
+#####详解
 
 Vue 使用 `_` 前缀来定义其自身的私有属性，所以使用相同的前缀 (比如 `_update`) 有覆写实例属性的风险。即便你检查确认 Vue 当前版本没有用到这个属性名，也不能保证和将来的版本没有冲突。
 
@@ -576,9 +506,6 @@ Vue 使用 `_` 前缀来定义其自身的私有属性，所以使用相同的�
 
 不过，我们推荐把这两个前缀结合为 `$_`，作为一个用户定义的私有属性的约定，以确保不会和 Vue 自身相冲突。
 
-{% raw %}</details>{% endraw %}
-
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` js
@@ -625,9 +552,6 @@ var myGreatMixin = {
 }
 ```
 
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ``` js
@@ -640,7 +564,6 @@ var myGreatMixin = {
   }
 }
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -654,7 +577,6 @@ var myGreatMixin = {
 
 当你需要编辑一个组件或查阅一个组件的用法时，可以更快速的找到它。
 
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` js
@@ -666,9 +588,6 @@ Vue.component('TodoItem', {
   // ...
 })
 ```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ```
@@ -682,7 +601,6 @@ components/
 |- TodoList.vue
 |- TodoItem.vue
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -692,7 +610,6 @@ components/
 
 单词大写开头对于代码编辑器的自动补全最为友好，因为这使得我们在 JS(X) 和模板中引用组件的方式尽可能的一致。然而，混用文件命名方式有的时候会导致大小写不敏感的文件系统的问题，这也是横线连接命名同样完全可取的原因。
 
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ```
@@ -704,9 +621,6 @@ components/
 components/
 |- myComponent.vue
 ```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ```
@@ -718,7 +632,6 @@ components/
 components/
 |- my-component.vue
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -726,12 +639,7 @@ components/
 
 **应用特定样式和约定的基础组件 (也就是展示类的、无逻辑的或无状态的组件) 应该全部以一个特定的前缀开头，比如 `Base`、`App` 或 `V`。**
 
-{% raw %}
-<details>
-<summary>
-  <h4>详解</h4>
-</summary>
-{% endraw %}
+#####详解
 
 这些组件为你的应用奠定了一致的基础样式和行为。它们可能**只**包括：
 
@@ -765,9 +673,6 @@ components/
   })
   ```
 
-{% raw %}</details>{% endraw %}
-
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ```
@@ -776,9 +681,6 @@ components/
 |- VueTable.vue
 |- Icon.vue
 ```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ```
@@ -801,7 +703,6 @@ components/
 |- VTable.vue
 |- VIcon.vue
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -811,7 +712,6 @@ components/
 
 这不意味着组件只可用于一个单页面，而是_每个页面_只使用一次。这些组件永远不接受任何 prop，因为它们是为你的应用定制的，而不是它们在你的应用中的上下文。如果你发现有必要添加 prop，那就表明这实际上是一个可复用的组件，_只是目前_在每个页面里只使用一次。
 
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ```
@@ -819,9 +719,6 @@ components/
 |- Heading.vue
 |- MySidebar.vue
 ```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ```
@@ -829,7 +726,6 @@ components/
 |- TheHeading.vue
 |- TheSidebar.vue
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -839,12 +735,7 @@ components/
 
 如果一个组件只在某个父组件的场景下有意义，这层关系应该体现在其名字上。因为编辑器通常会按字母顺序组织文件，所以这样做可以把相关联的文件排在一起。
 
-{% raw %}
-<details>
-<summary>
-  <h4>详解</h4>
-</summary>
-{% endraw %}
+#####详解
 
 你可以试着通过在其父组件命名的目录中嵌套子组件以解决这个问题。比如：
 
@@ -873,9 +764,6 @@ components/
 - 许多文件的名字相同，使得在编辑器中快速切换文件变得困难。
 - 过多嵌套的子目录增加了在编辑器侧边栏中浏览组件所花的时间。
 
-{% raw %}</details>{% endraw %}
-
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ```
@@ -890,9 +778,6 @@ components/
 |- SearchSidebar.vue
 |- NavigationForSearchSidebar.vue
 ```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ```
@@ -907,7 +792,6 @@ components/
 |- SearchSidebar.vue
 |- SearchSidebarNavigation.vue
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -915,12 +799,7 @@ components/
 
 **组件名应该以高级别的 (通常是一般化描述的) 单词开头，以描述性的修饰词结尾。**
 
-{% raw %}
-<details>
-<summary>
-  <h4>详解</h4>
-</summary>
-{% endraw %}
+#####详解
 
 你可能会疑惑：
 
@@ -966,9 +845,6 @@ components/
 - 存在组件重名 (比如存在多个 `ButtonDelete` 组件) 的时候在编辑器里更难快速定位。
 - 让重构变得更难，因为为一个移动了的组件更新相关引用时，查找/替换通常并不高效。
 
-{% raw %}</details>{% endraw %}
-
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ```
@@ -980,9 +856,6 @@ components/
 |- SearchInput.vue
 |- TermsCheckbox.vue
 ```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ```
@@ -994,7 +867,6 @@ components/
 |- SettingsCheckboxTerms.vue
 |- SettingsCheckboxLaunchOnStartup.vue
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -1006,7 +878,6 @@ components/
 
 不幸的是，HTML 并不支持自闭合的自定义元素——只有[官方的“空”元素](https://www.w3.org/TR/html/syntax.html#void-elements)。所以上述策略仅适用于进入 DOM 之前 Vue 的模板编译器能够触达的地方，然后再产出符合 DOM 规范的 HTML。
 
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` html
@@ -1018,9 +889,6 @@ components/
 <!-- 在 DOM 模板中 -->
 <my-component/>
 ```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ``` html
@@ -1032,7 +900,6 @@ components/
 <!-- 在 DOM 模板中 -->
 <my-component></my-component>
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -1050,7 +917,6 @@ PascalCase 相比 kebab-case 有一些优势：
 
 还请注意，如果你已经是 kebab-case 的重度用户，那么与 HTML 保持一致的命名约定且在多个项目中保持相同的大小写规则就可能比上述优势更为重要了。在这些情况下，**在所有的地方都使用 kebab-case 同样是可以接受的。**
 
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` html
@@ -1067,9 +933,6 @@ PascalCase 相比 kebab-case 有一些优势：
 <!-- 在 DOM 模板中 -->
 <MyComponent></MyComponent>
 ```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ``` html
@@ -1088,7 +951,6 @@ PascalCase 相比 kebab-case 有一些优势：
 <!-- 在所有地方 -->
 <my-component></my-component>
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -1096,12 +958,7 @@ PascalCase 相比 kebab-case 有一些优势：
 
 **JS/[JSX](../guide/render-function.html#JSX) 中的组件名应该始终是 PascalCase 的，尽管在较为简单的应用中只使用 `Vue.component` 进行全局组件注册时，可以使用 kebab-case 字符串。**
 
-{% raw %}
-<details>
-<summary>
-  <h4>详解</h4>
-</summary>
-{% endraw %}
+#####详解
 
 在 JavaScript 中，PascalCase 是类和构造函数 (本质上任何可以产生多份不同实例的东西) 的命名约定。Vue 组件也有多份实例，所以同样使用 PascalCase 是有意义的。额外的好处是，在 JSX (和模板) 里使用 PascalCase 使得代码的读者更容易分辨 Vue 组件和 HTML 元素。
 
@@ -1109,9 +966,7 @@ PascalCase 相比 kebab-case 有一些优势：
 
 - 全局组件很少被 JavaScript 引用，所以遵守 JavaScript 的命名约定意义不大。
 - 这些应用往往包含许多 DOM 内的模板，这种情况下是[**必须**使用 kebab-case](#模板中的组件名大小写-强烈推荐) 的。
-{% raw %}</details>{% endraw %}
 
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` js
@@ -1137,9 +992,6 @@ export default {
   // ...
 }
 ```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ``` js
@@ -1164,7 +1016,6 @@ export default {
   // ...
 }
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -1174,7 +1025,6 @@ export default {
 
 编辑器中的自动补全已经让书写长命名的代价非常之低了，而其带来的明确性却是非常宝贵的。不常用的缩写尤其应该避免。
 
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ```
@@ -1182,9 +1032,6 @@ components/
 |- SdSettings.vue
 |- UProfOpts.vue
 ```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ```
@@ -1192,7 +1039,6 @@ components/
 |- StudentDashboardSettings.vue
 |- UserProfileOptions.vue
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -1202,7 +1048,6 @@ components/
 
 我们单纯的遵循每个语言的约定。在 JavaScript 中更自然的是 camelCase。而在 HTML 中则是 kebab-case。
 
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` js
@@ -1214,9 +1059,6 @@ props: {
 ``` html
 <WelcomeMessage greetingText="hi"/>
 ```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ``` js
@@ -1228,7 +1070,6 @@ props: {
 ``` html
 <WelcomeMessage greeting-text="hi"/>
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -1238,7 +1079,6 @@ props: {
 
 在 JavaScript 中，用多行分隔对象的多个属性是很常见的最佳实践，因为这样更易读。模板和 [JSX](../guide/render-function.html#JSX) 值得我们做相同的考虑。
 
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` html
@@ -1248,9 +1088,6 @@ props: {
 ``` html
 <MyComponent foo="a" bar="b" baz="c"/>
 ```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ``` html
@@ -1267,7 +1104,6 @@ props: {
   baz="c"
 />
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -1277,7 +1113,6 @@ props: {
 
 复杂表达式会让你的模板变得不那么声明式。我们应该尽量描述应该出现的*是什么*，而非*如何*计算那个值。而且计算属性和方法使得代码可以重用。
 
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` html
@@ -1287,9 +1122,6 @@ props: {
   }).join(' ')
 }}
 ```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ``` html
@@ -1307,7 +1139,6 @@ computed: {
   }
 }
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -1315,12 +1146,7 @@ computed: {
 
 **应该把复杂计算属性分割为尽可能多的更简单的属性。**
 
-{% raw %}
-<details>
-<summary>
-  <h4>详解</h4>
-</summary>
-{% endraw %}
+#####详解
 
 更简单、命名得当的计算属性是这样的：
 
@@ -1338,9 +1164,6 @@ computed: {
 
   小的、专注的计算属性减少了信息使用时的假设性限制，所以需求变更时也用不着那么多重构了。
 
-{% raw %}</details>{% endraw %}
-
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` js
@@ -1354,9 +1177,6 @@ computed: {
   }
 }
 ```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ``` js
@@ -1372,7 +1192,6 @@ computed: {
   }
 }
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -1382,7 +1201,6 @@ computed: {
 
 在 HTML 中不带空格的特性值是可以没有引号的，但这样做常常导致带空格的特征值_被回避_，导致其可读性变差。
 
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` html
@@ -1392,9 +1210,6 @@ computed: {
 ``` html
 <AppSidebar :style={width:sidebarWidth+'px'}>
 ```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ``` html
@@ -1404,7 +1219,6 @@ computed: {
 ``` html
 <AppSidebar :style="{ width: sidebarWidth + 'px' }">
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -1412,7 +1226,6 @@ computed: {
 
 **指令缩写 (用 `:` 表示 `v-bind:` 和用 `@` 表示 `v-on:`) 应该要么都用要么都不用。**
 
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` html
@@ -1428,9 +1241,6 @@ computed: {
   @focus="onFocus"
 >
 ```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ``` html
@@ -1460,7 +1270,6 @@ computed: {
   v-on:focus="onFocus"
 >
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -1570,7 +1379,6 @@ computed: {
 
 当你的组件开始觉得密集或难以阅读时，在多个属性之间添加空行可以让其变得容易。在一些诸如 Vim 的编辑器里，这样格式化后的选项还能通过键盘被快速导航。
 
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ``` js
@@ -1623,7 +1431,6 @@ computed: {
   }
 }
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -1631,7 +1438,6 @@ computed: {
 
 **[单文件组件](../guide/single-file-components.html)应该总是让 `<script>`、`<template>` 和 `<style>` 标签的顺序保持一致。且 `<style>` 要放在最后，因为另外两个标签至少要有一个。**
 
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` html
@@ -1651,9 +1457,7 @@ computed: {
 <script>/* ... */</script>
 <style>/* ... */</style>
 ```
-{% raw %}</div>{% endraw %}
 
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ``` html
@@ -1679,7 +1483,6 @@ computed: {
 <script>/* ... */</script>
 <style>/* ... */</style>
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -1693,7 +1496,6 @@ computed: {
 
 默认情况下，Vue 会尽可能高效的更新 DOM。这意味着其在相同类型的元素之间切换时，会修补已存在的元素，而不是将旧的元素移除然后在同一位置添加一个新元素。如果本不相同的元素被识别为相同，则会出现[意料之外的副作用](https://jsfiddle.net/chrisvfritz/bh8fLeds/)。
 
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` html
@@ -1704,9 +1506,7 @@ computed: {
   {{ results }}
 </div>
 ```
-{% raw %}</div>{% endraw %}
 
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ``` html
@@ -1729,7 +1529,6 @@ computed: {
   {{ results }}
 </div>
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -1739,20 +1538,13 @@ computed: {
 
 在 `scoped` 样式中，类选择器比元素选择器更好，因为大量使用元素选择器是很慢的。
 
-{% raw %}
-<details>
-<summary>
-  <h4>详解</h4>
-</summary>
-{% endraw %}
+#####详解
 
 为了给样式设置作用域，Vue 会为元素添加一个独一无二的特性，例如 `data-v-f3f3eg9`。然后修改选择器，使得在匹配选择器的元素中，只有带这个特性才会真正生效 (比如 `button[data-v-f3f3eg9]`)。
 
 问题在于大量的[元素和特性组合的选择器](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=a%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (比如 `button[data-v-f3f3eg9]`) 会比[类和特性组合的选择器](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=.class%5Bhref%5D&body=background%3A+%23CFD&ne=1000) 慢，所以应该尽可能选用类选择器。
 
-{% raw %}</details>{% endraw %}
 
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` html
@@ -1766,9 +1558,7 @@ button {
 }
 </style>
 ```
-{% raw %}</div>{% endraw %}
 
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ``` html
@@ -1782,7 +1572,6 @@ button {
 }
 </style>
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -1794,7 +1583,6 @@ button {
 
 问题在于，这种做法在很多_简单_的场景下可能会更方便。但请当心，不要为了一时方便 (少写代码) 而牺牲数据流向的简洁性 (易于理解)。
 
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` js
@@ -1835,9 +1623,7 @@ Vue.component('TodoItem', {
   `
 })
 ```
-{% raw %}</div>{% endraw %}
 
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ``` js
@@ -1875,7 +1661,6 @@ Vue.component('TodoItem', {
   `
 })
 ```
-{% raw %}</div>{% endraw %}
 
 
 
@@ -1885,9 +1670,7 @@ Vue.component('TodoItem', {
 
 通过 `this.$root` 和/或[全局事件总线](../guide/migration.html#dispatch-和-broadcast-替换)管理状态在很多简单的情况下都是很方便的，但是并不适用于绝大多数的应用。Vuex 提供的不仅是一个管理状态的中心区域，还是组织、追踪和调试状态变更的好工具。
 
-{% raw %}</details>{% endraw %}
 
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` js
@@ -1909,9 +1692,7 @@ new Vue({
   }
 })
 ```
-{% raw %}</div>{% endraw %}
 
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
 
 ``` js
@@ -1958,11 +1739,7 @@ export default {
 }
 </script>
 ```
-{% raw %}</div>{% endraw %}
 
-
-
-{% raw %}
 <script>
 (function () {
   var enforcementTypes = {
@@ -1998,4 +1775,3 @@ export default {
   // })
 })()
 </script>
-{% endraw %}
