@@ -52,8 +52,9 @@ function foo(p1, p2, p3) {
 ```
 
 #### 命名
+（如无必要，任何情况下不可使用汉语拼音命名）
 
-**变量**, 使用 Camel 命名法。
+**变量**, 使用 Camel (驼峰) 命名法。
 
 ```javascript
 var loadingModules = {};
@@ -70,8 +71,8 @@ var _privateMethod = {};
 var HTML_ENTITY = {};
 ```
 
-1. **函数**, 使用 Camel 命名法。
-2. 函数的**参数**, 使用 Camel 命名法。
+1. **函数**, 使用 Camel (驼峰) 命名法。
+2. 函数的**参数**, 使用 Camel (驼峰) 命名法。
 
 ```javascript
 function stringFormat(source) {}
@@ -79,8 +80,8 @@ function stringFormat(source) {}
 function hear(theBells) {}
 ```
 
-1. **类**, 使用 Pascal 命名法
-2. 类的 **方法 / 属性**, 使用 Camel 命名法
+1. **类**, 使用 Pascal (大驼峰) 命名法
+2. 类的 **方法 / 属性**, 使用 Camel (驼峰) 命名法
 
 ```javascript
 function TextNode(value, engine) {
@@ -93,7 +94,7 @@ TextNode.prototype.clone = function () {
 };
 ```
 
-1. **枚举变量** 使用 Pascal 命名法。
+1. **枚举变量** 使用 Pascal (大驼峰) 命名法。
 2. **枚举的属性**， 使用全部字母大写，单词间下划线分隔的命名方式。
 
 ```javascript
@@ -195,30 +196,30 @@ loadingData.then(callback);
 #### 不要在 Array 上使用 for-in 循环
 for-in 循环只用于 `object/map/hash` 的遍历, 对 `Array` 用 for-in 循环有时会出错. 因为它并不是从 0 到 length - 1 进行遍历, 而是所有出现在对象及其原型链的键值。
 ```javascript
-// Not recommended
+// 错误
 function printArray(arr) {
   for (var key in arr) {
     print(arr[key]);
   }
 }
 
-printArray([0,1,2,3]);  // This works.
+printArray([0,1,2,3]);  // 正常.
 
 var a = new Array(10);
-printArray(a);  // This is wrong.
+printArray(a);  // 错误.
 
 a = document.getElementsByTagName('*');
-printArray(a);  // This is wrong.
+printArray(a);  // 错误.
 
 a = [0,1,2,3];
 a.buhu = 'wine';
-printArray(a);  // This is wrong again.
+printArray(a);  // 错误.
 
 a = new Array;
 a[3] = 3;
-printArray(a);  // This is wrong again.
+printArray(a);  // 错误.
 
-// Recommended
+// 正确
 function printArray(arr) {
   var l = arr.length;
   for (var i = 0; i < l; i++) {
@@ -253,14 +254,14 @@ var x = foo.bar().
 三元操作符用于替代 if 条件判断语句。
 
 ```javascript
-// Not recommended
+// 不推荐
 if (val != 0) {
   return foo();
 } else {
   return bar();
 }
 
-// Recommended
+// 推荐
 return val ? foo() : bar();
 ```
 
@@ -268,7 +269,7 @@ return val ? foo() : bar();
 二元布尔操作符是可短路的, 只有在必要时才会计算到最后一项。
 
 ```javascript
-// Not recommended
+// 不推荐
 function foo(opt_win) {
   var win;
   if (opt_win) {
@@ -287,7 +288,7 @@ if (node) {
   }
 }
 
-// Recommended
+// 推荐
 function foo(opt_win) {
   var win = opt_win || window;
   // ...

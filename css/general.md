@@ -45,13 +45,13 @@
 
 元素选择器和 ID、Class 混合使用也违反关注分离原则。如果HTML标签修改了，就要再去修改 CSS 代码，不利于后期维护。
 ```css
-/* Not recommended */
+/* 错误 */
 .red {}
 .box_green {}
 .page .header .login #username input {}
 ul#example {}
 
-/* Recommended */
+/* 正确 */
 #nav {}
 .box-video {}
 #username input {}
@@ -71,7 +71,7 @@ ul#example {}
 - 避免为 0 值指定单位，例如，用 `margin: 0;` 代替 `margin: 0px;`；
 
 ```css
-/*  Not recommended  */
+/*  错误  */
 .selector, .selector-secondary, .selector[type=text] {
   padding:15px;
   margin:0px 0px 15px;
@@ -79,7 +79,7 @@ ul#example {}
   box-shadow:0px 1px 2px #CCC,inset 0 1px 0 #FFFFFF
 }
 
-/* Recommended */
+/* 正确 */
 .selector,
 .selector-secondary,
 .selector[type="text"] {
@@ -92,10 +92,10 @@ ul#example {}
 
 #### 声明顺序
 相关属性应为一组，推荐的样式编写顺序
-1. Positioning
-2. Box model
-3. Typographic
-4. Visual
+1. Positioning（定位）
+2. Box model（盒模型）
+3. Typographic（字体排印）
+4. Visual（视觉表达）
 
 由于定位（positioning）可以从正常的文档流中移除元素，并且还能覆盖盒模型（box model）相关的样式，因此排在首位。盒模型决定了组件的尺寸和位置，因此排在第二位。
 
@@ -142,14 +142,14 @@ ul#example {}
 `url()` 、属性选择符、属性值使用双引号。
 参考 [Is quoting the value of url() really necessary?](http://stackoverflow.com/questions/2168855/is-quoting-the-value-of-url-really-necessary)
 ```css
-/* Not recommended */
+/* 错误 */
 @import url(//www.google.com/css/maia.css);
 
 html {
   font-family: 'open sans', arial, sans-serif;
 }
 
-/* Recommended */
+/* 正确 */
 @import url("//www.google.com/css/maia.css");
 
 html {

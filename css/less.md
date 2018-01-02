@@ -20,11 +20,11 @@
 #### @import 语句
 @import 语句引用的文需要写在一对引号内，.less 后缀不得省略。引号使用 `'` 和 `"` 均可，但在同一项目内需统一。
 ```css
-/* Not recommended */
+/* 错误 */
 @import "mixins/size";
 @import 'mixins/grid.less';
 
-/* Recommended */
+/* 正确 */
 @import "mixins/size.less";
 @import "mixins/grid.less";
 ```
@@ -35,7 +35,7 @@
 2. 如果混入的是本身不输出内容的 mixin，需要在 mixin 后添加括号（即使不传参数），以区分这是否是一个 className。
 
 ```css
-/* Not recommended */
+/* 错误 */
 .big-text {
   font-size: 2em;
 }
@@ -45,7 +45,7 @@ h3 {
   .clearfix;
 }
 
-/* Recommended */
+/* 正确 */
 .big-text() {
   font-size: 2em;
 }

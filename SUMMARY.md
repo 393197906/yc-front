@@ -7,7 +7,6 @@
    * [HEAD](html/head.md)
 * [CSS](css/README.md)
    * [通用约定](css/general.md)
-   * [字体排印](css/typography.md)
    * [模块组织](css/structure.md)
    * [Less 规范](css/less.md)
    * [性能优化](css/performance.md)

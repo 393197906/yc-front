@@ -4,7 +4,7 @@
 尽量确保文档和模板只包含 `HTML` 结构，样式都放到样式表里，行为都放到脚本里。
 
 #### 缩进
-统一**两个空格**缩进（总之缩进统一即可），不要使用 `Tab` 或者 `Tab`、空格混搭。
+缩进统一，不可 `tab` 与 `空格` 混用。建议使用（tab）。
 
 #### 文件编码
 **使用不带 `BOM` 的 UTF-8 编码。**
@@ -13,18 +13,18 @@
 
 #### 一律使用小写字母
 ```html
-<!-- Recommended -->
+<!-- 正确 -->
 <img src="google.png" alt="Google">
 
-<!-- Not recommended -->
+<!-- 错误 -->
 <A HREF="/">Home</A>
 ```
 
 ```css
-/* Recommended */
+/* 正确 */
 color: #e5e5e5;
 
-/* Not recommended */
+/* 错误 */
 color: #E5E5E5;
 ```
 
@@ -33,20 +33,20 @@ color: #E5E5E5;
 
 **其它协议（`ftp` 等）的 URL 不省略。**
 ```html
-<!-- Recommended -->
+<!-- 正确 -->
 <script src="//www.google.com/js/gweb/analytics/autotrack.js"></script>
 
-<!-- Not recommended -->
+<!-- 错误 -->
 <script src="http://www.google.com/js/gweb/analytics/autotrack.js"></script>
 ```
 
 ```css
-/* Recommended */
+/* 正确 */
 .example {
   background: url(//www.google.com/images/example);
 }
 
-/* Not recommended */
+/* 错误 */
 .example {
   background: url(http://www.google.com/images/example);
 }

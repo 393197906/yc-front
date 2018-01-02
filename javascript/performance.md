@@ -4,7 +4,7 @@
 浏览器遍历 DOM 元素的代价是昂贵的。最简单优化 DOM 树查询的方案是，当一个元素出现多次时，将它保存在一个变量中，就避免多次查询 DOM 树了。
 
 ```javascript
-// Recommended
+// 推荐
 var myList = "";
 var myListHTML = document.getElementById("myList").innerHTML;
 
@@ -14,7 +14,7 @@ for (var i = 0; i < 100; i++) {
 
 myListHTML = myList;
 
-// Not recommended
+// 不推荐
 for (var i = 0; i < 100; i++) {
   document.getElementById("myList").innerHTML += "<span>" + i + "</span>";
 }
@@ -27,12 +27,12 @@ for (var i = 0; i < 100; i++) {
 ```javascript
 var arr = new Array(1000),
     len, i;
-// Recommended - size is calculated only 1 time and then stored
+// 推荐 - 缓存数组长度
 for (i = 0, len = arr.length; i < len; i++) {
 
 }
 
-// Not recommended - size needs to be recalculated 1000 times
+// 不推荐 - 未缓存数组长度，旧浏览器会有性能损失
 for (i = 0; i < arr.length; i++) {
 
 }

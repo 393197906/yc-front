@@ -14,12 +14,12 @@
   <li>Guide</li>
 </ul>
 
-<!-- Not recommended -->
+<!-- 错误 -->
 <span class="avatar">
   <img src="...">
 </span>
 
-<!-- Recommended -->
+<!-- 正确 -->
 <img class="avatar" src="...">
 ```
 
@@ -58,10 +58,10 @@ HTML 属性应该按照特定的顺序出现以保证易读性。
 属性的定义，统一使用双引号。
 
 ```html
-<!-- Not recommended -->
+<!-- 错误 -->
 <span id='j-hook' class=text>Google</span>
 
-<!-- Recommended -->
+<!-- 正确 -->
 <span id="j-hook" class="text">Google</span>
 ```
 

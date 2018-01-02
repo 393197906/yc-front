@@ -26,10 +26,10 @@ $myDiv.click(function(){...});
 2. 在父元素中选择子元素使用 `.find()` 方法性能会更好, 因为 ID 选择器没有使用到 Sizzle 选择器引擎来查找元素；
 
 ```javascript
-// Not recommended
+// 不推荐
 var $productIds = $("#products .class");
 
-// Recommended
+// 推荐
 var $productIds = $("#products").find(".class");
 ```
 
@@ -44,13 +44,13 @@ $myList.appendTo("#list-container");
 ```
 
 ```javascript
-// Not recommended
+// 不推荐
 var $myList = $("#list");
 for(var i = 0; i < 10000; i++){
     $myList.append("<li>"+i+"</li>");
 }
 
-// Recommended
+// 推荐
 var $myList = $("#list");
 var list = "";
 for(var i = 0; i < 10000; i++){
@@ -58,7 +58,7 @@ for(var i = 0; i < 10000; i++){
 }
 $myList.html(list);
 
-// Much to recommended
+// 强烈推荐
 var array = [];
 for(var i = 0; i < 10000; i++){
     array[i] = "<li>"+i+"</li>";
@@ -76,10 +76,10 @@ $("#myLink").unbind("click.mySpecialClick");
 ```
 
 ```javascript
-// Not recommended
+// 不推荐
 $("#list a").on("click", myClickHandler);
 
-// Recommended
+// 推荐
 $("#list").on("click", "a", myClickHandler);
 ```
 

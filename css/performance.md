@@ -115,7 +115,7 @@ CSS 选择器对性能的影响源于浏览器匹配选择器和文档元素时�
 
 1、避免使用通用选择器
 ```css
-/* Not recommended */
+/* 错误 */
 .content * {color: red;}
 ```
 
@@ -123,44 +123,44 @@ CSS 选择器对性能的影响源于浏览器匹配选择器和文档元素时�
 
 2、避免使用标签或 class 选择器限制 id 选择器
 ```css
-/* Not recommended */
+/* 错误 */
 button#backButton {…}
-/* Recommended */
+/* 正确 */
 #newMenuIcon {…}
 ```
 
 3、避免使用标签限制 class 选择器
 ```css
-/* Not recommended */
+/* 错误 */
 treecell.indented {…}
-/* Recommended */
+/* 正确 */
 .treecell-indented {…}
-/* Much to recommended */
+/* 强烈推荐 */
 .hierarchy-deep {…}
 ```
 
 4、避免使用多层标签选择器。使用 class 选择器替换，减少css查找
 ```css
-/* Not recommended */
+/* 错误 */
 treeitem[mailfolder="true"] > treerow > treecell {…}
-/* Recommended */
+/* 正确 */
 .treecell-mailfolder {…}
 ```
 
 5、避免使用子选择器
 ```css
-/* Not recommended */
+/* 错误 */
 treehead treerow treecell {…}
-/* Recommended */
+/* 正确 */
 treehead > treerow > treecell {…}
-/* Much to recommended */
+/* 强烈推荐 */
 .treecell-header {…}
 ```
 
-6、使用继承
+6、多使用继承
 ```css
-/* Not recommended */
+/* 错误 */
 #bookmarkMenuItem > .menu-left { list-style-image: url(blah) }
-/* Recommended */
+/* 正确 */
 #bookmarkMenuItem { list-style-image: url(blah) }
 ```
