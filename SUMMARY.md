@@ -1,5 +1,5 @@
-# Summary
-* [Introduction](README.md)
+# 亿城前端开发规范
+* [引子](README.md)
 * [基本原则](basic/README.md)
 * [HTML](html/README.md)
    * [通用约定](html/general.md)
