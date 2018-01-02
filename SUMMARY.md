@@ -13,6 +13,7 @@
 * [JavaScript](javascript/README.md)
    * [通用约定](javascript/general.md)
    * [jQuery 规范](javascript/jquery.md)
+   * [vue 风格指南](javascript/vue.md)
    * [性能优化](javascript/performance.md)
 * [移动端优化](mobile-optimize/README.md)
 * [工具箱](tool/README.md)
